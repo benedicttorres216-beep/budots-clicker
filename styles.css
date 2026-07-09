@@ -1,0 +1,182 @@
+/* Premium Realistic UI Base Theme */
+:root {
+    --bg-dark: #0f111a;
+    --card-bg: #1a1d29;
+    --accent-red: #ff4757;
+    --text-main: #f1f2f6;
+    --text-muted: #a4b0be;
+    --border-color: #2f3542;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-dark);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    user-select: none;
+    perspective: 1000px;
+}
+
+.dashboard-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    width: 420px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.card-header {
+    background: #141622;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dot-group { display: flex; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.system-status {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2ed573;
+    letter-spacing: 1px;
+}
+
+.card-body {
+    padding: 30px 24px;
+    text-align: center;
+}
+
+.zephh-badge {
+    background: rgba(255, 71, 87, 0.1);
+    color: #ff4757;
+    border: 1px solid rgba(255, 71, 87, 0.2);
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.instruction-text {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin: 0 0 20px 0;
+    line-height: 1.5;
+}
+
+.score-container {
+    background: #12141f;
+    border-radius: 6px;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.02);
+}
+
+.score-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.score-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.interaction-zone {
+    position: relative;
+    width: 100%;
+    height: 140px; /* Slightly taller to frame the dancer nicely */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #12141f;
+    border-radius: 8px;
+    border: 1px dashed var(--border-color);
+    overflow: visible;
+}
+
+/* --- NEW DANCER UI STYLES --- */
+.dancer-hidden {
+    display: none;
+}
+
+.dancer-active {
+    display: block;
+    position: absolute;
+    font-size: 4rem;
+    z-index: 11;
+    pointer-events: none;
+    /* Synchronized with the 140 BPM (0.428s per full dance measure) loop */
+    animation: budots-dance 0.43s infinite steps(2) alternate;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+}
+
+/* Aggressive side-to-side hip swinging choreography matching the Davao style */
+@keyframes budots-dance {
+    0% {
+        transform: scaleX(1) rotate(-15deg) translateY(0px);
+    }
+    50% {
+        transform: scaleX(-1) rotate(15deg) translateY(-10px);
+    }
+    100% {
+        transform: scaleX(1) rotate(-25deg) translateY(5px);
+    }
+}
+
+#annoying-btn {
+    position: absolute;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: transform 0.05s linear;
+    z-index: 12;
+}
+
+.stfu-popup {
+    position: absolute;
+    font-size: 5rem;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    color: #ff2222;
+    font-weight: 900;
+    text-transform: uppercase;
+    pointer-events: none;
+    user-select: none;
+    z-index: 100;
+    width: max-content;
+    animation: stfu-flash 0.05s infinite alternate;
+}
+
+@keyframes stfu-flash {
+    0% { color: #ff4757; text-shadow: 4px 4px #fff, -4px -4px #000; }
+    100% { color: #ffffff; text-shadow: -4px -4px #ff1111, 4px 4px #000; }
+}
